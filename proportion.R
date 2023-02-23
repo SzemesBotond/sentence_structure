@@ -51,18 +51,11 @@ row.names(type_num) <- files.v
 # rotate rows and cols
 all_num <- t(type_num) 
 
-#common categories
-explic_infer <- c()
-advers_disjuct <- c()
-space_time <- c()
-for (i in 1:150) {
-  explic_infer[[i]] <-  sum(all_num[4,i], all_num[5,i])
-  advers_disjuct[[i]] <-  sum(all_num[2,i], all_num[3,i])
-  space_time[[i]] <-  sum(all_num[10,i], all_num[11,i])
-} 
-explic_infer <- unlist(explic_infer)
-advers_disjuct <- unlist(advers_disjuct)
-space_time <- unlist(space_time)
+#mixed categories
+explic_infer <- unlist(lapply(all_num[4,]+ all_num[5,], sum))
+advers_disjuct <- unlist(lapply(all_num[2,]+ all_num[3,], sum))
+space_time <-  unlist(lapply(all_num[10,]+ all_num[11,], sum))
+
 all_num<- rbind(all_num,explic_infer, advers_disjuct, space_time)
 rownames(all_num)[rownames(all_num) == "explic_infer"] <- "Explicatory/Inferentail"
 rownames(all_num)[rownames(all_num) == "advers_disjuct"] <- "Adversative/Disjunctive"
