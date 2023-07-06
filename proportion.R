@@ -69,7 +69,7 @@ for (i in 1:ncol(all_num)) {
     proportion_num[j,i] <- all_num[j,i]/sum(all_num[,i])*100 
   }
 } 
-# Proper format for visualization
+# Different format for visualization
 all_proportion <- data.matrix(proportion_num)
 all_proportion <- as.table(all_proportion)
 all_proportion <- as.data.frame(all_proportion)
